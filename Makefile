@@ -10,8 +10,8 @@ help:             ## Show the help.
 
 
 install:
-    pip install -r requirements-test.txt
-    pip install .
+	pip install -r requirements-test.txt
+	pip install .
 
 .PHONY: clean
 clean:            ## Clean unused files.
