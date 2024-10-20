@@ -1,5 +1,9 @@
 # LLM Magics for Jupyter Notebooks
 
+[![CI](https://github.com/kmkolasinski/ipython-llm-magics/actions/workflows/main.yml/badge.svg)]
+(https://github.com/kmkolasinski/ipython-llm-magics/actions/workflows/main.yml)
+
+
 Interact seamlessly with Large Language Models (LLMs) like OpenAI's GPT models directly from your Jupyter Notebook using IPython magics.
 
 https://pypi.org/project/llm-magics/
