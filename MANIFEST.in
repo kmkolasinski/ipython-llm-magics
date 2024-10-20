@@ -1,0 +1,3 @@
+include LICENSE
+include HISTORY.md
+graft llm_magics
