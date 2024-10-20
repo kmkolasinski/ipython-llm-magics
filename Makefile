@@ -9,6 +9,10 @@ help:             ## Show the help.
 	@fgrep "##" Makefile | fgrep -v fgrep
 
 
+install:
+    pip install -r requirements-test.txt
+    pip install .
+
 .PHONY: clean
 clean:            ## Clean unused files.
 	@find ./ -name '*.pyc' -exec rm -f {} \;
