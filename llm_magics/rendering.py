@@ -17,6 +17,10 @@ def render_response(content: str | None) -> None:
     display(HTML(html_header))
 
 
+def display_markdown(content: str) -> None:
+    display(Markdown(content))
+
+
 def create_code_block(code: str, language: str = "python") -> str:
     # Escape HTML special characters in the code
     escaped_code = html.escape(code)

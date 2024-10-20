@@ -129,6 +129,22 @@ Now modify the function to generate a random floating-point number between 0 and
 
 *The assistant will update the function accordingly.*
 
+
+### Inserting local variables into the chat
+```python
+not_sorted_list = [3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5]
+expected_output = sorted(not_sorted_list)
+```
+```python
+%%llm_chat
+
+Write python code to sort the list in the descending order using merge sort algorithm.
+So that I can write:
+input = $not_sorted_list
+assert $expected_output == my_merge_sort(input)
+```
+
+
 ### Clearing the Conversation History
 
 Reset the chat history when needed:

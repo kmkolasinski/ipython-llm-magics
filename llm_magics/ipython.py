@@ -1,7 +1,14 @@
+import re
+from typing import Any
+
 from ipykernel import zmqshell  # type: ignore
 from IPython.core import magic  # type: ignore
 
 from llm_magics import client, rendering
+
+# match ${variable} or $variable
+VARIABLE_PATTERN1 = re.compile("\${(\w+)}")
+VARIABLE_PATTERN2 = re.compile("\$(\w+)")
 
 
 @magic.magics_class
@@ -34,9 +41,18 @@ class LLMMagics(magic.Magics):  # type: ignore
         message = message.strip()
         self._client.set_system_message(message)
 
+    @magic.needs_local_scope  # type: ignore
     @magic.cell_magic  # type: ignore
-    def llm_chat(self, line: str, cell: str) -> None:
+    def llm_chat(self, line: str, cell: str, local_ns: dict[str, Any]) -> None:
         """Send a message to the chat client and get the response."""
+        matches = re.findall(VARIABLE_PATTERN1, cell)
+        matches += re.findall(VARIABLE_PATTERN2, cell)
+        for name in matches:
+            if name in local_ns:
+                rendering.display_markdown(
+                    f'ⓘ INFO: Replacing "<b>{name}</b>" with local variable value'
+                )
+                cell = cell.replace(f"${{{name}}}", str(local_ns[name]))
         response = self._client.send_message(cell)
         rendering.render_response(response)
 
