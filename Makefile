@@ -8,6 +8,8 @@ help:             ## Show the help.
 	@echo "Targets:"
 	@fgrep "##" Makefile | fgrep -v fgrep
 
+make test:
+	pytest tests
 
 install:
 	pip install -r requirements-test.txt
